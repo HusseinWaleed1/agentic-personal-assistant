@@ -35,7 +35,7 @@ function App() {
     setMessages((prev) => [...prev, { role: "user", text: trimmed }]);
 
     try {
-      const response = await fetch("http://localhost:3001/api/chat", {
+      const response = await fetch("https://agentic-personal-assistant-production.up.railway.app/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: trimmed }),
@@ -65,7 +65,7 @@ function App() {
       const formData = new FormData();
       formData.append("file", selectedFile);
 
-      const response = await fetch("http://localhost:3001/api/ingest", {
+      const response = await fetch("https://agentic-personal-assistant-production.up.railway.app/api/ingest", {
         method: "POST",
         body: formData,
       });

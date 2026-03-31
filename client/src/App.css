@@ -1,0 +1,374 @@
+/* ── RIVO TECH color tokens ── */
+:root {
+  --rivo-red: #e8001d;
+  --rivo-blue: #4f8ef7;
+  --rivo-purple: #8b5cf6;
+  --rivo-gradient: linear-gradient(135deg, #e8001d, #8b5cf6, #4f8ef7);
+  --rivo-bg: #07080f;
+  --rivo-surface: #0d1020;
+  --rivo-surface2: #111427;
+  --rivo-border: rgba(255, 255, 255, 0.08);
+  --rivo-text: rgba(255, 255, 255, 0.92);
+  --rivo-muted: rgba(255, 255, 255, 0.55);
+}
+ 
+/* ── Base ── */
+* {
+  box-sizing: border-box;
+}
+ 
+.appShell {
+  min-height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+  background: var(--rivo-bg);
+  color: var(--rivo-text);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-image:
+    radial-gradient(ellipse at 20% 20%, rgba(232, 0, 29, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 80%, rgba(79, 142, 247, 0.08) 0%, transparent 60%);
+}
+ 
+/* ── Header ── */
+.appHeader {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(7, 8, 15, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(232, 0, 29, 0.2);
+  flex-shrink: 0;
+}
+ 
+.appHeaderInner {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+ 
+.appTitle {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  background: var(--rivo-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+ 
+.appSubtitle {
+  font-size: 12px;
+  color: var(--rivo-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+ 
+/* ── Main layout ── */
+.appMain {
+  width: 100%;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 12px 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+}
+ 
+/* ── Upload Panel ── */
+.uploadPanel {
+  background: var(--rivo-surface);
+  border: 1px solid rgba(232, 0, 29, 0.2);
+  border-radius: 14px;
+  padding: 10px 12px;
+  box-shadow: 0 0 20px rgba(232, 0, 29, 0.05);
+  flex-shrink: 0;
+}
+ 
+.uploadRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+ 
+.uploadInput {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+ 
+.uploadButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: var(--rivo-text);
+  cursor: pointer;
+  user-select: none;
+  font-size: 13px;
+  font-weight: 500;
+  transition: border-color 0.2s, background 0.2s;
+  white-space: nowrap;
+}
+ 
+.uploadButton:hover {
+  border-color: var(--rivo-red);
+  background: rgba(232, 0, 29, 0.08);
+}
+ 
+.primaryButton {
+  padding: 8px 14px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--rivo-red), var(--rivo-purple));
+  border: none;
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s;
+  white-space: nowrap;
+}
+ 
+.primaryButton:hover:not(:disabled) {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+ 
+.primaryButton:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+ 
+.uploadMeta {
+  font-size: 12px;
+  color: var(--rivo-muted);
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+ 
+.uploadStatus {
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--rivo-blue);
+}
+ 
+/* ── Chat Panel ── */
+.chatPanel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(79, 142, 247, 0.15);
+  border-radius: 14px;
+  background: var(--rivo-surface2);
+  overflow: hidden;
+  min-height: 0;
+  box-shadow: 0 0 30px rgba(79, 142, 247, 0.04);
+}
+ 
+.messages {
+  flex: 1;
+  padding: 14px 12px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  min-height: 0;
+}
+ 
+.emptyState {
+  color: var(--rivo-muted);
+  font-size: 13px;
+  line-height: 1.5;
+  padding: 24px 8px;
+  text-align: center;
+}
+ 
+.messageRow {
+  display: flex;
+  margin: 8px 0;
+}
+ 
+.messageRow.isUser {
+  justify-content: flex-end;
+}
+ 
+.messageRow.isAi {
+  justify-content: flex-start;
+}
+ 
+.messageBubble {
+  max-width: 85%;
+  padding: 9px 12px;
+  border-radius: 14px;
+  font-size: 14px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+ 
+.messageRow.isUser .messageBubble {
+  background: linear-gradient(135deg, var(--rivo-red), var(--rivo-purple));
+  color: #fff;
+  border: none;
+}
+ 
+.messageRow.isAi .messageBubble {
+  background: rgba(79, 142, 247, 0.08);
+  color: var(--rivo-text);
+  border: 1px solid rgba(79, 142, 247, 0.18);
+}
+ 
+.messageBubble.isTyping {
+  opacity: 0.7;
+  font-style: italic;
+}
+ 
+/* ── Composer ── */
+.composer {
+  border-top: 1px solid rgba(79, 142, 247, 0.12);
+  background: rgba(7, 8, 15, 0.7);
+  padding: 10px 12px;
+  flex-shrink: 0;
+}
+ 
+.composerInner {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 8px 10px;
+  transition: border-color 0.2s;
+}
+ 
+.composerInner:focus-within {
+  border-color: rgba(232, 0, 29, 0.4);
+}
+ 
+.composerInput {
+  flex: 1;
+  resize: none;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--rivo-text);
+  font-size: 14px;
+  line-height: 1.4;
+  min-height: 22px;
+  max-height: 120px;
+  font-family: inherit;
+}
+ 
+.composerInput::placeholder {
+  color: var(--rivo-muted);
+}
+ 
+.sendButton {
+  padding: 8px 14px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--rivo-red), var(--rivo-purple));
+  border: none;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+ 
+.sendButton:hover:not(:disabled) {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+ 
+.sendButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+ 
+.composerHint {
+  margin-top: 6px;
+  font-size: 11px;
+  color: var(--rivo-muted);
+  padding: 0 2px;
+}
+ 
+/* ── Mobile ── */
+@media (max-width: 480px) {
+  .appHeaderInner {
+    padding: 10px 14px;
+  }
+ 
+  .appTitle {
+    font-size: 15px;
+  }
+ 
+  .appSubtitle {
+    font-size: 11px;
+  }
+ 
+  .appMain {
+    padding: 10px 10px 12px;
+    gap: 8px;
+  }
+ 
+  .uploadPanel {
+    padding: 8px 10px;
+    border-radius: 12px;
+  }
+ 
+  .uploadRow {
+    gap: 6px;
+  }
+ 
+  .uploadButton,
+  .primaryButton {
+    padding: 7px 11px;
+    font-size: 12px;
+    border-radius: 8px;
+  }
+ 
+  .messages {
+    padding: 10px;
+  }
+ 
+  .messageBubble {
+    max-width: 90%;
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+ 
+  .composer {
+    padding: 8px 10px;
+  }
+ 
+  .composerInput {
+    font-size: 16px; /* منع iOS zoom */
+  }
+ 
+  .sendButton {
+    padding: 7px 12px;
+    font-size: 13px;
+    border-radius: 8px;
+  }
+ 
+  .composerHint {
+    display: none;
+  }
+}

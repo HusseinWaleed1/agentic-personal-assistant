@@ -9,7 +9,12 @@ import { runAgent } from "./agent.js";
 import { ingestData } from "./ingest.js";
 
 const app = express();
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(cors({ 
+  origin: [
+    "http://localhost:5173",
+    "https://agentic-personal-assistant-five.vercel.app"
+  ] 
+}));
 app.use(express.json());
 
 // Multer for PDF uploads
